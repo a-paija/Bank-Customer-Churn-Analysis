@@ -1,1 +1,1 @@
-# MavenBank Customer Churn Analysis & Retention Strategy
+# Customer Churn Analysis & Retention Strategy
