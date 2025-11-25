@@ -24,7 +24,7 @@ from sklearn.ensemble import RandomForestClassifier
 # ---------------------------
 # 1A. Load data
 # ---------------------------
-file_path = "Bank_Churn_Messy.xlsx"
+file_path = "Messy_Data.xlsx"
 demographics = pd.read_excel(file_path, sheet_name='Customer_Info')
 account = pd.read_excel(file_path, sheet_name='Account_Info')
 
