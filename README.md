@@ -57,7 +57,7 @@ Mavenland Bank is facing an unexpected rise in customer churn that is threatenin
 | **Medium Risk** | 10% | Moderate age, balances, product usage | Targeted campaigns, engagement incentives |
 | **Low Risk** | 83% | Younger, fewer products, lower balances | Maintain engagement, monitor for changes |
   
-## 🔍 Exploratory Analysis & Code Snippets
+## 🔍 Exploratory Analysis & Code Snippets (Click to Open)
 
 <details>
 <summary><strong>Churn Analysis & Customer Profiles</strong></summary> 
@@ -315,6 +315,8 @@ print(high_risk_customers.head(10)[['Age','Balance','NumOfProducts','EstimatedSa
 
 ---
 
-This analysis demonstrates a complete end-to-end approach to customer churn management, from data cleaning and visualization to predictive modeling and actionable business insights.
+## 📌 Final Summary
+
+This project demonstrates a complete end-to-end customer churn analysis workflow—from data cleaning and exploratory analysis to predictive modeling, segmentation, and strategic business recommendations. By combining technical modeling with business insights, this analysis supports Mavenland Bank’s goal of reducing churn by 25% and provides a clear roadmap for targeted retention efforts.
 
 Data Source: [Maven Analytics](https://mavenanalytics.io/data-playground/bank-customer-churn)
