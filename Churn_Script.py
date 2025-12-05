@@ -13,6 +13,7 @@
 # 1. Load & Clean Data
 # ---------------------------
 
+from sklearn.metrics import confusion_matrix, classification_report
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -262,8 +263,36 @@ df_final['Churn_Prob'] = results['Churn_Prob']
 df_final['Prediction'] = results['Prediction']
 df_final['Risk_Tier'] = results['Risk_Tier']
 
-df_final.to_csv("Churn_risk_enriched_data.csv", index=False)
-print("Export complete: Churn_risk_enriched_data.csv")
+df_final.to_csv("churn_risk_enriched_data.csv", index=False)
+print("Export complete: churn_risk_enriched_data.csv")
+
+# ---------------------------
+# 4E. Model Evaluation: Confusion Matrix & Classification Report
+# ---------------------------
+
+
+# Extract actual and predicted values from the enriched dataset
+y_true = df_final['Exited']        # actual churn (0 or 1)
+y_pred = df_final['Prediction']    # model prediction (0 or 1)
+
+# Compute confusion matrix
+cm = confusion_matrix(y_true, y_pred)
+
+# Print confusion matrix and classification report
+print("Confusion Matrix:")
+print(cm)
+print("\nClassification Report:")
+print(classification_report(y_true, y_pred))
+
+# Visualize confusion matrix with heatmap
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm, annot=True, fmt='d', cmap="Blues",
+            xticklabels=["Predicted No Churn", "Predicted Churn"],
+            yticklabels=["Actual No Churn", "Actual Churn"])
+plt.title("Confusion Matrix")
+plt.ylabel("Actual")
+plt.xlabel("Predicted")
+plt.show()
 
 # ---------------------------
 # 5. Actionable Recommendations & Retention Strategies
