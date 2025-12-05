@@ -31,8 +31,10 @@ account = pd.read_excel(file_path, sheet_name='Account_Info')
 # ---------------------------
 # 1B. Clean Numeric Columns
 # ---------------------------
-demographics['EstimatedSalary'] = demographics['EstimatedSalary'].replace('[€,]', '', regex=True).astype(float)
-account['Balance'] = account['Balance'].replace('[€,]', '', regex=True).astype(float)
+demographics['EstimatedSalary'] = demographics['EstimatedSalary'].replace(
+    '[€,]', '', regex=True).astype(float)
+account['Balance'] = account['Balance'].replace(
+    '[€,]', '', regex=True).astype(float)
 account['HasCrCard'] = account['HasCrCard'].map({'Yes': 1, 'No': 0})
 account['IsActiveMember'] = account['IsActiveMember'].map({'Yes': 1, 'No': 0})
 
@@ -41,8 +43,8 @@ account['IsActiveMember'] = account['IsActiveMember'].map({'Yes': 1, 'No': 0})
 # ---------------------------
 account = account.drop(columns=['Tenure']).drop_duplicates(subset='CustomerId')
 df = pd.merge(demographics, account, on='CustomerId', how='inner')
-df = df[['CustomerId','Surname','CreditScore','Geography','Gender','Age','Tenure',
-         'Balance','NumOfProducts','HasCrCard','IsActiveMember','EstimatedSalary','Exited']]
+df = df[['CustomerId', 'Surname', 'CreditScore', 'Geography', 'Gender', 'Age', 'Tenure',
+         'Balance', 'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Exited']]
 
 # ---------------------------
 # 1D. Geography Cleaning
@@ -73,101 +75,114 @@ print(f"Overall churn rate: {overall_churn:.2%}")
 # 2B. Churn by Geography
 # ---------------------------
 geo_churn = df.groupby('Geography')['Exited'].mean().reset_index()
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(8, 6))
 sns.barplot(x='Geography', y='Exited', data=geo_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
 plt.ylim(0, 0.4)
 plt.title("Churn Rate by Geography", fontsize=14)
 plt.ylabel("Churn Rate (%)", fontsize=12)
 plt.xlabel("Geography", fontsize=12)
 for i, row in geo_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.01, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+    plt.text(i, row['Exited'] + 0.01,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
 plt.show()
 
-## Observation: Germany ~32%, France & Spain ~16%
-## Action: Target retention campaigns in Germany
+# Observation: Germany ~32%, France & Spain ~16%
+# Action: Target retention campaigns in Germany
 
 # ---------------------------
 # 2C. Churn by Gender
 # ---------------------------
 gender_churn = df.groupby('Gender')['Exited'].mean().reset_index()
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(8, 6))
 sns.barplot(x='Gender', y='Exited', data=gender_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
 plt.ylim(0, 0.30)
 plt.title("Churn Rate by Gender", fontsize=14)
 plt.ylabel("Churn Rate (%)", fontsize=12)
 plt.xlabel("Gender", fontsize=12)
 for i, row in gender_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.01, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+    plt.text(i, row['Exited'] + 0.01,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
 plt.show()
 
-## Observation: Female churn higher (~25% vs 16.5%)
-## Action: Investigate female customer behavior & engagement
+# Observation: Female churn higher (~25% vs 16.5%)
+# Action: Investigate female customer behavior & engagement
 
 # ---------------------------
 # 2D. Churn by Age Group
 # ---------------------------
 age_bins = pd.cut(df['Age'], bins=[18, 30, 40, 50, 60, 70],
-                  labels=['18–30','31–40','41–50','51–60','61–70'])
+                  labels=['18–30', '31–40', '41–50', '51–60', '61–70'])
 age_churn = df.groupby(age_bins)['Exited'].mean().reset_index()
 age_churn.columns = ['Age Group', 'Exited']
-plt.figure(figsize=(8,6))
+plt.figure(figsize=(8, 6))
 sns.barplot(x='Age Group', y='Exited', data=age_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
 plt.ylim(0, 0.65)
 plt.title("Churn Rate by Age Group", fontsize=14)
 plt.ylabel("Churn Rate (%)", fontsize=12)
 plt.xlabel("Age Group", fontsize=12)
 for i, row in age_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.02, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+    plt.text(i, row['Exited'] + 0.02,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
 plt.show()
 
-## Observation: 50–60 highest churn (~56%), 18–30 lowest (~7.5%)
-## Action: Tailor retention for older customers
+# Observation: 50–60 highest churn (~56%), 18–30 lowest (~7.5%)
+# Action: Tailor retention for older customers
 
 # ---------------------------
 # 2E. Churn by Credit Score Group
 # ---------------------------
 credit_bins = [300, 579, 669, 739, 850]
 credit_labels = ['Poor', 'Fair', 'Good', 'Excellent']
-df['CreditScoreGroup'] = pd.cut(df['CreditScore'], bins=credit_bins, labels=credit_labels)
-credit_churn = df.groupby('CreditScoreGroup')['Exited'].agg(['count','mean']).reset_index()
-credit_churn.columns = ['CreditScoreGroup','CustomerCount','ChurnRate']
-plt.figure(figsize=(8,6))
-sns.barplot(x='CreditScoreGroup', y='ChurnRate', data=credit_churn, order=credit_labels, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+df['CreditScoreGroup'] = pd.cut(
+    df['CreditScore'], bins=credit_bins, labels=credit_labels)
+credit_churn = df.groupby('CreditScoreGroup')['Exited'].agg(
+    ['count', 'mean']).reset_index()
+credit_churn.columns = ['CreditScoreGroup', 'CustomerCount', 'ChurnRate']
+plt.figure(figsize=(8, 6))
+sns.barplot(x='CreditScoreGroup', y='ChurnRate', data=credit_churn,
+            order=credit_labels, palette="viridis")
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
 plt.ylim(0.16, 0.23)
 plt.title("Churn Rate by Credit Score Group", fontsize=14)
 plt.ylabel("Churn Rate (%)", fontsize=12)
 plt.xlabel("Credit Score Group", fontsize=12)
 for i, row in credit_churn.iterrows():
-    plt.text(i, row['ChurnRate'] + 0.005, f"{row['ChurnRate']*100:.1f}%", ha='center', fontweight='bold')
+    plt.text(i, row['ChurnRate'] + 0.005,
+             f"{row['ChurnRate']*100:.1f}%", ha='center', fontweight='bold')
 plt.show()
 
-## Observation: Poor churn highest (~22%), Good lowest (~18.6%), Excellent slightly higher (~20%)
-## Action: Implement credit-based retention strategies
+# Observation: Poor churn highest (~22%), Good lowest (~18.6%), Excellent slightly higher (~20%)
+# Action: Implement credit-based retention strategies
 
 # ---------------------------
 # 3A. Predictive Modeling Setup
 # ---------------------------
-features = ['CreditScore','Geography','Gender','Age','Tenure','Balance',
-            'NumOfProducts','HasCrCard','IsActiveMember','EstimatedSalary']
+features = ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance',
+            'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary']
 X = pd.get_dummies(df[features], drop_first=True)
 y = df['Exited']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42)
 
 # ---------------------------
 # 3B. Random Forest
 # ---------------------------
-rf_model = RandomForestClassifier(n_estimators=300, min_samples_split=5, random_state=42)
+rf_model = RandomForestClassifier(
+    n_estimators=300, min_samples_split=5, random_state=42)
 rf_model.fit(X_train, y_train)
 rf_preds = rf_model.predict(X_test)
 print("Random Forest Accuracy:", accuracy_score(y_test, rf_preds))
 print(classification_report(y_test, rf_preds))
 
-## Observation: 86.7% accuracy, recall 51%, better at identifying churners
-## Action: Use Random Forest for retention prioritization
+# Observation: 86.7% accuracy, recall 51%, better at identifying churners
+# Action: Use Random Forest for retention prioritization
 
 # ---------------------------
 # 3C. Feature Importance (Random Forest)
@@ -177,16 +192,17 @@ rf_importance = pd.DataFrame({
     'Importance': rf_model.feature_importances_ * 100
 }).sort_values('Importance', ascending=False)
 
-plt.figure(figsize=(10,6))
-sns.barplot(data=rf_importance.head(10), x='Importance', y='Feature', palette="viridis")
+plt.figure(figsize=(10, 6))
+sns.barplot(data=rf_importance.head(10), x='Importance',
+            y='Feature', palette="viridis")
 plt.title("Top Drivers of Customer Churn", fontsize=14)
 plt.xlabel("Relative Impact on Churn (%)", fontsize=12)
 plt.ylabel("Customer Attribute", fontsize=12)
 plt.tight_layout()
 plt.show()
 
-## Observation: Age, NumOfProducts, Balance, Salary are top predictors
-## Action: Age-specific retention, cross-sell products, premium retention offers
+# Observation: Age, NumOfProducts, Balance, Salary are top predictors
+# Action: Age-specific retention, cross-sell products, premium retention offers
 
 # ---------------------------
 # 4A. Customer Churn Risk Segmentation
@@ -194,10 +210,23 @@ plt.show()
 results = X_test.copy()
 
 results['Actual'] = y_test.values
-results['Churn_Prob'] = rf_model.predict_proba(X_test)[:,1]
+results['Churn_Prob'] = rf_model.predict_proba(X_test)[:, 1]
 results['Prediction'] = rf_model.predict(X_test)
-results['Risk_Tier'] = pd.cut(results['Churn_Prob'], bins=[0,0.40,0.70,1],
-                              labels=['Low Risk','Medium Risk','High Risk'])
+
+# Assign risk tiers including 0 and 1 probabilities
+results['Risk_Tier'] = pd.cut(
+    results['Churn_Prob'],
+    bins=[-0.001, 0.40, 0.70, 1.001],  # small buffer to include 0 and 1
+    labels=['Low Risk', 'Medium Risk', 'High Risk'],
+    include_lowest=True
+)
+
+# Check for missing risk tiers
+missing_risk = results['Risk_Tier'].isna().sum()
+if missing_risk > 0:
+    print(f"Warning: {missing_risk} rows have no Risk_Tier assigned")
+else:
+    print("All customers assigned a Risk_Tier.")
 
 # ---------------------------
 # 4B. Risk Tier Summary & Profiling
@@ -206,9 +235,18 @@ risk_counts = results['Risk_Tier'].value_counts().sort_index()
 print("Customer Count per Risk Tier:")
 print(risk_counts)
 
-risk_stats = results.groupby('Risk_Tier')[['Age','Balance','NumOfProducts','EstimatedSalary']].mean().round(2)
+risk_stats = results.groupby('Risk_Tier')[
+    ['Age', 'Balance', 'NumOfProducts', 'EstimatedSalary']].mean().round(2)
 print("\nAverage Customer Profile by Risk Tier:")
 print(risk_stats)
+
+# ---------------------------
+# 4C. High-Risk Customer Exploration
+# ---------------------------
+high_risk_customers = results[results['Risk_Tier'] == 'High Risk']
+print("\nTop 10 High-Risk Customers:")
+print(high_risk_customers.head(10)[
+      ['Age', 'Balance', 'NumOfProducts', 'EstimatedSalary']])
 
 # Observation:
 # - High Risk (~7% of customers): older, more products, higher balances and salaries
@@ -217,35 +255,15 @@ print(risk_stats)
 # Action: Prioritize retention campaigns on Medium & High Risk tiers using top predictors
 
 # ---------------------------
-# 4C. High-Risk Customer Exploration
-# ---------------------------
-high_risk_customers = results[results['Risk_Tier'] == 'High Risk']
-print("\nTop 10 High-Risk Customers:")
-print(high_risk_customers.head(10)[['Age','Balance','NumOfProducts','EstimatedSalary']])
-
-
-# --------------------------------------
 # 4D. Build Final Enriched Dataset
-# --------------------------------------
-
-# Merge model outputs back with original customer data
+# ---------------------------
 df_final = df.loc[X_test.index].copy()
-
-# Add predictions, probabilities, and risk tiers
 df_final['Churn_Prob'] = results['Churn_Prob']
 df_final['Prediction'] = results['Prediction']
 df_final['Risk_Tier'] = results['Risk_Tier']
 
-# Save to CSV for Tableau dashboard or future analysis
 df_final.to_csv("Final_Customer_Risk_Data.csv", index=False)
-
 print("Export complete: Final_Customer_Risk_Data.csv")
-
-
-# Observation:
-# - High Risk customers tend to be older (45–65)
-# - Often show high balances and diverse product usage patterns
-# - These accounts should be prioritized for retention
 
 # ---------------------------
 # 5. Actionable Recommendations & Retention Strategies
