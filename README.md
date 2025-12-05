@@ -239,7 +239,7 @@ print(risk_stats)
 ```
 
 ```
-- Low Risk: 2,473 customers
+- Low Risk: 2,477 customers
 - Medium Risk: 292 customers
 - High Risk: 231 customers
 ```
@@ -248,7 +248,7 @@ print(risk_stats)
 ```
 | **Risk Tier**   | **Age** | **Balance**   | **NumOfProducts** | **EstimatedSalary** |
 |-----------------|---------|----------------|--------------------|----------------------|
-| **Low Risk**    | 36.91   | 71,747.72      | 1.53               | 98,995.27            |
+| **Low Risk**    | 36.90   | 71631.86       | 1.53               | 98931.14             |
 | **Medium Risk** | 45.86   | 96,124.23      | 1.24               | 97,689.29            |
 | **High Risk**   | 51.02   | 92,645.82      | 1.78               | 104,118.17           |
 ```
