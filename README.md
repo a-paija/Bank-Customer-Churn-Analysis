@@ -6,13 +6,22 @@ Mavenland Bank is facing an unexpected rise in customer churn that is threatenin
 **Business Objective:** Reduce customer churn by 25% within two quarters to stabilize quarterly revenue targets.
 
 ## 🛠️ Tech Stack
+```
+Project Files
 
+1. Messy_Data.xlsx – Original raw data containing customer demographic and account information.
+2. Cleaned_Data.csv – Processed version of the raw data with numeric conversions, cleaned geography, and duplicates removed.
+3. Bank_Churn_Data_Dictionary.csv – A reference file explaining each variable/column in the dataset.
+4. Churn_Script.py – Python script that performs data cleaning, exploratory analysis, predictive modeling (Random Forest), and risk segmentation.
+5. Churn_risk_enriched_data.csv – Output dataset from the script including predicted churn probabilities, risk tiers, and customer-level predictions for the 3,000-customer evaluation set.
+```
+```
 - Languages: Python (Pandas, NumPy)
 - Data Visualization: Seaborn, Matplotlib
 - Modeling: Scikit-Learn (Random Forest)
 - Tools: Jupyter Notebook, GitHub
 - Business Focus: Customer Segmentation, Retention Strategy, Churn Prediction
-
+```
 ## 🎯 Key Questions Answered
 
 1. Which customer attributes are more common among churners than non-churners?
