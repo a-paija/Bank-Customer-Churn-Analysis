@@ -262,8 +262,8 @@ df_final['Churn_Prob'] = results['Churn_Prob']
 df_final['Prediction'] = results['Prediction']
 df_final['Risk_Tier'] = results['Risk_Tier']
 
-df_final.to_csv("churn_risk_enriched_data.csv", index=False)
-print("Export complete: churn_risk_enriched_data.csv")
+df_final.to_csv("Churn_risk_enriched_data.csv", index=False)
+print("Export complete: Churn_risk_enriched_data.csv")
 
 # ---------------------------
 # 5. Actionable Recommendations & Retention Strategies
