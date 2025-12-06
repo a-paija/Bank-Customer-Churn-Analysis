@@ -10,10 +10,13 @@ Customer churn is a major concern for financial institutions, as retaining exist
 Project Files
 
 1. Messy_Data.xlsx – Original raw data containing customer demographic and account information.
-2. Cleaned_Data.csv – Processed version of the raw data with numeric conversions, cleaned geography, and duplicates removed.
+2. Cleaned_Data.csv – Processed version of the raw data with numeric conversions, cleaned geography, and
+   duplicates removed.
 3. Bank_Churn_Data_Dictionary.csv – A reference file explaining each variable/column in the dataset.
-4. Churn_Script.py – Python script that performs data cleaning, exploratory analysis, predictive modeling (Random Forest), and risk segmentation.
-5. Churn_risk_enriched_data.csv – Output dataset from the script including predicted churn probabilities, risk tiers, and customer-level predictions for the 3,000-customer evaluation set.
+4. Churn_Script.py – Python script that performs data cleaning, exploratory analysis, predictive
+   modeling (Random Forest), and risk segmentation.
+5. Churn_risk_enriched_data.csv – Output dataset from the script including predicted churn probabilities,
+   risk tiers, and customer-level predictions for the 3,000-customer evaluation set.
 ```
 ```
 - Languages: Python (Pandas, NumPy)
@@ -23,26 +26,28 @@ Project Files
 - Business Focus: Customer Segmentation, Retention Strategy, Churn Prediction
 ```
 ## 🎯 Key Questions Answered
-
+```
 1. Which customer attributes are more common among churners than non-churners?
 2. Can churn be accurately predicted using the available customer and account variables?
 3. How does customer behavior differ across geographic regions (France, Germany, Spain)?
 4. How does churn vary across demographic groups such as age, gender, and credit score categories?
 5. Which features are the strongest drivers of churn based on predictive modeling?
 6. What actionable retention strategies can be derived from profiling high-risk customer segments?
-
+```
 ## 📁 Dataset
+```
 - **Source:** Messy Excel file with two tables (`Customer_Info` and `Account_Info`)
 - **Records:** 10,000 customers
 - **Features:** 13 attributes including demographics, account behavior, and churn status
-
+```
 ## 🧹 Data Cleaning Steps
+```
 - Standardized numeric formats (currencies → floats)  
 - Cleaned inconsistent geography labels  
 - Handled missing values & duplicates  
 - Merged customer and account tables  
 - Engineered features (age groups, product counts, etc.)
-
+```
 ## 🔍 Key Findings
 
 ### Demographic Insights
