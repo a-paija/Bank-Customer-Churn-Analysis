@@ -36,9 +36,9 @@ Project Files
 ```
 ## 📁 Dataset
 ```
-- **Source:** Messy Excel file with two tables (`Customer_Info` and `Account_Info`)
-- **Records:** 10,000 customers
-- **Features:** 13 attributes including demographics, account behavior, and churn status
+- Source: Messy Excel file with two tables (`Customer_Info` and `Account_Info`)
+- Records: 10,000 customers
+- Features: 13 attributes including demographics, account behavior, and churn status
 ```
 ## 🧹 Data Cleaning Steps
 ```
@@ -51,11 +51,13 @@ Project Files
 ## 🔍 Key Findings
 
 ### Demographic Insights
-- **Overall Churn Rate:** 20.4% (above industry benchmarks)
-- **Geography:** Germany has 32% churn vs 16% for France/Spain
-- **Gender:** Female customers churn at 25% vs 16.5% for males
-- **Age:** Customers aged 50-60 have 56% churn rate vs 7.5% for 18-30 age group
-- **Credit Score:** Poor credit customers (22% churn) vs Good credit (18.6% churn)
+```
+- Overall Churn Rate: 20.4% (above industry benchmarks)
+- Geography: Germany has 32% churn vs 16% for France/Spain
+- Gender: Female customers churn at 25% vs 16.5% for males
+- Age: Customers aged 50-60 have 56% churn rate vs 7.5% for 18-30 age group
+- Credit Score:** Poor credit customers (22% churn) vs Good credit (18.6% churn)
+```
 
 ### Predictive Modeling
 - **Model:** Random Forest Classifier
