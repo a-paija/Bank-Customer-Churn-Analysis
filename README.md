@@ -319,7 +319,7 @@ print(high_risk_customers.head(10)[['Age','Balance','NumOfProducts','EstimatedSa
 
 <summary><strong>Model Performance & Interpretation</strong></summary>
 
-The goal of this project is to predict customer churn so the bank can proactively intervene before customers leave. The initial Random Forest model was trained on 7,000 customers and evaluated on a 3,000-customer test set.
+***The goal of this project is to predict customer churn so the bank can proactively intervene before customers leave. The initial Random Forest model was trained on 7,000 customers and evaluated on a 3,000-customer test set.***
 
 ```python
 # Extract actual and predicted values
