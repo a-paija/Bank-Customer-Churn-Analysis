@@ -347,8 +347,7 @@ False Positives: 101
 False Negatives: 297
 True Positives: 314
 ```
-
-- Although the model performs well in terms of accuracy and precision, recall is relatively low. This means the model correctly catches about half of the customers who actually churn. This is a common outcome in churn modeling, especially when churn cases make up a small proportion of the dataset.
+***Although the model performs well in terms of accuracy and precision, recall is relatively low. This means the model correctly catches about half of the customers who actually churn. This is a common outcome in churn modeling, especially when churn cases make up a small proportion of the dataset.***
   
 ```
 Why Recall Is Lower
