@@ -56,7 +56,7 @@ Project Files
 - Geography: Germany has 32% churn vs 16% for France/Spain
 - Gender: Female customers churn at 25% vs 16.5% for males
 - Age: Customers aged 50-60 have 56% churn rate vs 7.5% for 18-30 age group
-- Credit Score:** Poor credit customers (22% churn) vs Good credit (18.6% churn)
+- Credit Score: Poor credit customers (22% churn) vs Good credit (18.6% churn)
 ```
 
 ### Predictive Modeling
