@@ -392,4 +392,6 @@ This project demonstrates a complete end-to-end customer churn analysis workflow
 
 [Full Python Script](https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Churn_Script.py)
 
+[Tableau Continuation](https://github.com/a-paija/Bank-Customer-Churn-Visualization)
+
 Data Source: [Maven Analytics](https://mavenanalytics.io/data-playground/bank-customer-churn)
