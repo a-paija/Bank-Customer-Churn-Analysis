@@ -1,397 +1,250 @@
-# Customer Churn Analysis & Retention Strategy
+# 🟦 Project Background
 
-## 📊 Problem Statement: 
-Customer churn is a major concern for financial institutions, as retaining existing clients is significantly more cost-effective than acquiring new ones. Predicting which customers are at risk of leaving allows banks to take timely actions to prevent churn and protect revenue.
+Customer churn is a critical challenge for financial institutions, as retaining existing customers is significantly more cost-effective than acquiring new ones. Mavenland Bank has experienced elevated churn rates but lacks a structured, data-driven understanding of who is leaving, why they leave, and how to intervene effectively.
 
-**Business Objective:** Reduce customer churn by 25% within two quarters to stabilize quarterly revenue targets.
+The dataset used in this project consists of **10,000 customer records**, combining demographic attributes, account behavior, and churn outcomes. However, due to inconsistencies in the raw data and lack of integrated analysis, the organization is unable to clearly identify churn drivers or implement targeted retention strategies.
 
-## 🛠️ Tech Stack
-```
-Project Files
+Without structured analysis, Mavenland Bank is unable to answer key business questions such as:
 
-1. Messy_Data.xlsx – Original raw data containing customer demographic and account information.
-2. Cleaned_Data.csv – Processed version of the raw data with numeric conversions, cleaned geography, and
-   duplicates removed.
-3. Bank_Churn_Data_Dictionary.csv – A reference file explaining each variable/column in the dataset.
-4. Churn_Script.py – Python script that performs data cleaning, exploratory analysis, predictive
-   modeling (Random Forest), and risk segmentation.
-5. Churn_risk_enriched_data.csv – Output dataset from the script including predicted churn probabilities,
-   risk tiers, and customer-level predictions for the 3,000-customer evaluation set.
-```
-```
-- Languages: Python (Pandas, NumPy)
-- Data Visualization: Seaborn, Matplotlib
-- Modeling: Scikit-Learn (Random Forest)
-- Tools: Jupyter Notebook, GitHub
-- Business Focus: Customer Segmentation, Retention Strategy, Churn Prediction
-```
-## 🎯 Key Questions Answered
-```
-1. Which customer attributes are more common among churners than non-churners?
-2. Can churn be accurately predicted using the available customer and account variables?
-3. How does customer behavior differ across geographic regions (France, Germany, Spain)?
-4. How does churn vary across demographic groups such as age, gender, and credit score categories?
-5. Which features are the strongest drivers of churn based on predictive modeling?
-6. What actionable retention strategies can be derived from profiling high-risk customer segments?
-```
-## 📁 Dataset
-```
-- Source: Messy Excel file with two tables (`Customer_Info` and `Account_Info`)
-- Records: 10,000 customers
-- Features: 13 attributes including demographics, account behavior, and churn status
-```
-## 🧹 Data Cleaning Steps
-```
-- Standardized numeric formats (currencies → floats)  
-- Cleaned inconsistent geography labels  
-- Handled missing values & duplicates  
-- Merged customer and account tables  
-- Engineered features (age groups, product counts, etc.)
-```
-## 🔍 Key Findings
+- Which customer segments are most likely to churn  
+- What behavioral or financial patterns signal churn risk  
+- How churn risk varies across regions and demographics  
+- Which customers should be prioritized for retention efforts  
 
-### Demographic Insights
-```
-- Overall Churn Rate: 20.4% (above industry benchmarks)
-- Geography: Germany has 32% churn vs 16% for France/Spain
-- Gender: Female customers churn at 25% vs 16.5% for males
-- Age: Customers aged 50-60 have 56% churn rate vs 7.5% for 18-30 age group
-- Credit Score: Poor credit customers (22% churn) vs Good credit (18.6% churn)
-```
+**Overall Goal:**  
+Reduce customer churn by **25% within two quarters** by identifying high-risk customers and enabling targeted, data-driven retention strategies.
 
-### Predictive Modeling
-- **Model:** Random Forest Classifier
-- **Accuracy:** 86.7%
-- **Key Predictors:** Age, Number of Products, Balance, Estimated Salary
+This project bridges that gap by transforming raw customer data into actionable insights using **Python (Pandas, Scikit-learn)**, data visualization, and predictive modeling.
 
-## 🎯 Customer Risk Segmentation
+- Exploratory analysis highlights where churn risk is concentrated  
+- Predictive modeling explains why customers churn and who is at risk  
 
-### Three-Tier Risk Classification
-| Risk Tier | % of Customers | Profile Characteristics | Recommended Actions |
-|-----------|----------------|------------------------|-------------------|
-| **High Risk** | 7% | Older (45-65), high balances, multiple products | Premium retention offers, dedicated relationship managers |
-| **Medium Risk** | 10% | Moderate age, balances, product usage | Targeted campaigns, engagement incentives |
-| **Low Risk** | 83% | Younger, fewer products, lower balances | Maintain engagement, monitor for changes |
-  
-## 🔍 Exploratory Analysis & Code Snippets (Click to Open)
-
-<details>
-<summary><strong>Churn Analysis & Customer Profiles</strong></summary> 
+Together, they enable both proactive intervention and strategic decision-making.
 
 ---
 
-### Overall Churn Rate
+Targeted Python scripts and full analysis can be found [here](https://github.com/a-paija/Bank-Customer-Churn-Analysis/blob/main/Churn_Script.py)
 
-```python
-overall_churn = df['Exited'].mean()
-print(f"Overall churn rate: {overall_churn:.2%}")
-```
-```
-- Overall churn rate is 20.37%, indicating that roughly 1 in 5 customers leave the bank.
-```
-
-### Churn by Geography
-  
-```python
-geo_churn = df.groupby('Geography')['Exited'].mean().reset_index()
-plt.figure(figsize=(8,6))
-sns.barplot(x='Geography', y='Exited', data=geo_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
-plt.ylim(0, 0.4)
-plt.title("Churn Rate by Geography", fontsize=14)
-plt.ylabel("Churn Rate (%)", fontsize=12)
-plt.xlabel("Geography", fontsize=12)
-for i, row in geo_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.01, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
-plt.show()
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Churn%20Rate%20by%20Geography.png" alt="Churn Rate by Geography" width="500" height="600"/>
-
-```
-- Germany shows the highest churn (~32%), while France and Spain remain lower at ~16%.
-```
-
-### Churn by Gender
-```python
-gender_churn = df.groupby('Gender')['Exited'].mean().reset_index()
-plt.figure(figsize=(8,6))
-sns.barplot(x='Gender', y='Exited', data=gender_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
-plt.ylim(0, 0.30)
-plt.title("Churn Rate by Gender", fontsize=14)
-plt.ylabel("Churn Rate (%)", fontsize=12)
-plt.xlabel("Gender", fontsize=12)
-for i, row in gender_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.01, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
-plt.show()
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Churn%20Rate%20by%20Gender.png" alt="Churn Rate by Gender" width="500" height="600"/>
-
-```
-- Female customers churn at ~25%, significantly higher than male customers at ~16.5%.
-```
-
-### Churn by Age Group
-
-```python
-age_bins = pd.cut(df['Age'], bins=[18, 30, 40, 50, 60, 70],
-                  labels=['18–30','31–40','41–50','51–60','61–70'])
-age_churn = df.groupby(age_bins)['Exited'].mean().reset_index()
-age_churn.columns = ['Age Group', 'Exited']
-plt.figure(figsize=(8,6))
-sns.barplot(x='Age Group', y='Exited', data=age_churn, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
-plt.ylim(0, 0.65)
-plt.title("Churn Rate by Age Group", fontsize=14)
-plt.ylabel("Churn Rate (%)", fontsize=12)
-plt.xlabel("Age Group", fontsize=12)
-for i, row in age_churn.iterrows():
-    plt.text(i, row['Exited'] + 0.02, f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
-plt.show()
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Churn%20Rate%20by%20Age%20Group.png" alt="Churn Rate by Age Group" width="500" height="600"/>
-
-```
-- Customers aged 51–60 churn the most (~56%), while ages 18–30 churn the least (~7.5%).
-```
-
-### Churn by Credit Score Group
-
-```python
-credit_bins = [300, 579, 669, 739, 850]
-credit_labels = ['Poor', 'Fair', 'Good', 'Excellent']
-df['CreditScoreGroup'] = pd.cut(df['CreditScore'], bins=credit_bins, labels=credit_labels)
-credit_churn = df.groupby('CreditScoreGroup')['Exited'].agg(['count','mean']).reset_index()
-credit_churn.columns = ['CreditScoreGroup','CustomerCount','ChurnRate']
-plt.figure(figsize=(8,6))
-sns.barplot(x='CreditScoreGroup', y='ChurnRate', data=credit_churn, order=credit_labels, palette="viridis")
-plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
-plt.ylim(0.16, 0.23)
-plt.title("Churn Rate by Credit Score Group", fontsize=14)
-plt.ylabel("Churn Rate (%)", fontsize=12)
-plt.xlabel("Credit Score Group", fontsize=12)
-for i, row in credit_churn.iterrows():
-    plt.text(i, row['ChurnRate'] + 0.005, f"{row['ChurnRate']*100:.1f}%", ha='center', fontweight='bold')
-plt.show()
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Churn%20Rate%20by%20Credit%20Score%20Group.png" alt="Churn Rate by Credit Group" width="500" height="600"/>
-
-```
-- Customers with Poor credit show the highest churn (~22%).
-- Those with Good scores have the lowest churn (~18.6%).
-- Excellent credit users churn slightly more (~20%) than Good.
-```
+Additional visualization work can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1)
 
 ---
 
-</details>
+# 🟦 Business Objective and Data Structure
 
-<details> 
-<summary><strong>Predictive Modeling & Feature Insights</strong></summary>
+The primary objective of this analysis is to **predict customer churn and identify actionable retention opportunities** to stabilize revenue and improve customer lifetime value.
 
----
+Specifically, this project aims to:
 
-```python
-features = ['CreditScore','Geography','Gender','Age','Tenure','Balance',
-            'NumOfProducts','HasCrCard','IsActiveMember','EstimatedSalary']
-X = pd.get_dummies(df[features], drop_first=True)
-y = df['Exited']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)
-``` 
-```python
-rf_model = RandomForestClassifier(n_estimators=300, min_samples_split=5, random_state=42)
-rf_model.fit(X_train, y_train)
-rf_preds = rf_model.predict(X_test)
-print("Random Forest Accuracy:", accuracy_score(y_test, rf_preds))
-print(classification_report(y_test, rf_preds))
-```
-```
-- Observation: 86.7% accuracy, recall 51%, better at identifying churners
-```
-
-```python
-rf_importance = pd.DataFrame({
-    'Feature': X.columns,
-    'Importance': rf_model.feature_importances_ * 100
-}).sort_values('Importance', ascending=False)
-
-plt.figure(figsize=(10,6))
-sns.barplot(data=rf_importance.head(10), x='Importance', y='Feature', palette="viridis")
-plt.title("Top Drivers of Customer Churn", fontsize=14)
-plt.xlabel("Relative Impact on Churn (%)", fontsize=12)
-plt.ylabel("Customer Attribute", fontsize=12)
-plt.tight_layout()
-plt.show()
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Top%20Drivers%20of%20Customer%20Churn.png" alt="Churn Rate by Credit Group" width="700" height="800"/>
-
-```
-- Observation: Age, NumOfProducts, Balance, Salary are top predictors
-```
----
-
-</details>
-
-<details> 
-<summary><strong>Customer Churn Risk Segmentation & High-Risk Profiling</strong></summary>
+- Identify key drivers of customer churn  
+- Segment customers based on churn risk  
+- Evaluate churn patterns across demographics and regions  
+- Build a predictive model to classify at-risk customers  
+- Translate insights into targeted retention strategies  
 
 ---
 
-```python
-results = X_test.copy()
+# 🟦 Data Structure & Initial Checks
 
-results['Actual'] = y_test.values
-results['Churn_Prob'] = rf_model.predict_proba(X_test)[:,1]
-results['Prediction'] = rf_model.predict(X_test)
-results['Risk_Tier'] = pd.cut(results['Churn_Prob'], bins=[0,0.40,0.70,1],
-                              labels=['Low Risk','Medium Risk','High Risk'])
-```
-```
-- Churn probabilities successfully segmented into Low, Medium, and High Risk tiers.
-- Enables targeted retention strategies based on churn likelihood.
-```
-```python
-risk_counts = results['Risk_Tier'].value_counts().sort_index()
-print("Customer Count per Risk Tier:")
-print(risk_counts)
+The dataset consists of **10,000 customer records with 13 features** spanning:
 
-risk_stats = results.groupby('Risk_Tier')[['Age','Balance','NumOfProducts','EstimatedSalary']].mean().round(2)
-print("\nAverage Customer Profile by Risk Tier:")
-print(risk_stats)
-```
+- **Demographics:** Age, Gender, Geography  
+- **Financial Profile:** Credit Score, Balance, Estimated Salary  
+- **Account Behavior:** Tenure, Number of Products, Activity Status  
+- **Outcome Variable:** Churn (Exited)  
 
-```
-- Low Risk: 2,477 customers
-- Medium Risk: 292 customers
-- High Risk: 231 customers
-```
-### Average Customer Profile by Risk Tier
-
-```
-| **Risk Tier**   | **Age** | **Balance**   | **NumOfProducts** | **EstimatedSalary** |
-|-----------------|---------|----------------|--------------------|----------------------|
-| **Low Risk**    | 36.90   | 71631.86       | 1.53               | 98931.14             |
-| **Medium Risk** | 45.86   | 96,124.23      | 1.24               | 97,689.29            |
-| **High Risk**   | 51.02   | 92,645.82      | 1.78               | 104,118.17           |
-```
-
-### Insights
-```
-- High Risk customers are older (51+), have higher balances, and more product holdings.
-- Medium Risk customers have moderate age but elevated balances.
-- Low Risk customers skew younger with fewer products and lower balances.
-```
-
-```python
-high_risk_customers = results[results['Risk_Tier'] == 'High Risk']
-print("\nTop 10 High-Risk Customers:")
-print(high_risk_customers.head(10)[['Age','Balance','NumOfProducts','EstimatedSalary']])
-```
-```
-| **Age** | **Balance**    | **NumOfProducts** | **EstimatedSalary** |
-|--------:|---------------:|-------------------:|---------------------:|
-| 53      | 156,674.20     | 1                 | 118,502.34           |
-| 48      | 118,317.27     | 4                 | 78,702.98            |
-| 63      | 110,314.21     | 2                 | 37,464.00            |
-| 56      | 143,249.67     | 1                 | 88,428.41            |
-| 45      | 103,583.05     | 1                 | 132,127.69           |
-| 50      | 112,650.89     | 1                 | 166,386.22           |
-| 65      | 120,100.41     | 1                 | 107,563.16           |
-| 45      | 129,818.39     | 3                 | 9,217.55             |
-| 45      | 120,591.19     | 1                 | 195,123.94           |
-| 60      | 0.00           | 1                 | 17,978.68            |
-```
-
-### Observation:
-
-```
-- High Risk customers are typically between ages 45–65.
-- Many maintain high account balances and show product diversification.
-- These accounts represent high-value customers at elevated churn risk.
-```
---- 
-
-</details>
-
-<details> 
-
---- 
-
-<summary><strong>Model Performance & Interpretation</strong></summary>
-
-***The goal of this project is to predict customer churn so the bank can proactively intervene before customers leave. The initial Random Forest model was trained on 7,000 customers and evaluated on a 3,000-customer test set.***
-
-```python
-# Extract actual and predicted values
-y_true = df['Exited']          # actual churn (0 or 1)
-y_pred = df['Prediction']      # model prediction (0 or 1)
-
-# Compute confusion matrix
-cm = confusion_matrix(y_true, y_pred)
-
-# Print confusion matrix and classification report
-print("Confusion Matrix:")
-print(cm)
-print("\nClassification Report:")
-print(classification_report(y_true, y_pred))
-```
-<img src="https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Images/Confusion%20Matrix.png" alt="Confusion Matrix" width="500" height="600"/>
-
-```
-Accuracy: 86.7%
-Precision (Churn = 1): 75.7%
-Recall (Churn = 1): 51.4%
-Confusion Matrix:
-True Negatives: 2,288
-False Positives: 101
-False Negatives: 297
-True Positives: 314
-```
-***Although the model performs well in terms of accuracy and precision, recall is relatively low. This means the model correctly catches about half of the customers who actually churn. This is a common outcome in churn modeling, especially when churn cases make up a small proportion of the dataset.***
-  
-```
-Why Recall Is Lower
-
-1. Several real-world factors limit churn detection in the first iteration of this model:
-2. Imbalanced dataset: Only ~20% of customers churn, making it harder for the model to learn minority patterns.
-3. Limited features: The dataset lacks real behavioral signals like login frequency, complaints, or usage trends.
-4. Baseline model: No threshold tuning, class weighting, or hyperparameter optimization has been applied yet.
-5. Despite this, the model still identifies 314 high-risk churners who can be immediately targeted for retention efforts.
-```
-
-</details>
-
-## Recommended Actions (Across All Analyses)
-
-```
-1. Target churn reduction efforts in Germany, the primary high-risk market.
-2. Launch female-focused engagement strategies to address higher churn among women.
-3. Develop retention programs for older customers, especially those aged 51–60.
-4. Introduce credit-risk-tailored retention programs, particularly for Poor and Excellent credit groups.
-5. Maintain strong engagement with customers aged 18–30, the lowest-risk demographic.
-6. Prioritize Medium & High Risk customers for retention outreach.
-7. Build age-targeted programs, especially for customers 45+.
-8. Offer product bundle optimization or financial planning for customers with high balances.
-9. Deploy proactive engagement for customers showing diverse product usage, indicating high lifetime value.
-10. Maintain monitoring and early-warning triggers for rising churn probability.
-```
-
-## 💼 Portfolio Highlights
-
-- **Data Analysis:** Cleaned and merged messy Excel data, handled missing values, and engineered new features.  
-- **Data Visualization:** Created insightful charts highlighting churn trends by geography, age, gender, and credit score.  
-- **Predictive Modeling:** Built and evaluated a Random Forest model with 86.7% accuracy, identifying key churn drivers.  
-- **Business Insights:** Segmented customers into risk tiers and recommended actionable retention strategies.  
-- **Communication:** Presented findings in a structured, visual, and narrative format suitable for stakeholders.
+Data originated from multiple tables and required consolidation before analysis.
 
 ---
 
-## 📌 Final Summary
+# 🟦 Data Cleaning (Python)
 
-This project demonstrates a complete end-to-end customer churn analysis workflow—from data cleaning and exploratory analysis to predictive modeling, segmentation, and strategic business recommendations. By combining technical modeling with business insights, this analysis supports Mavenland Bank’s goal of reducing churn by 25% and provides a clear roadmap for targeted retention efforts.
+Before analysis, extensive data preparation was conducted to ensure accuracy and usability.
 
-[Full Python Script](https://github.com/a-paija/Why-Customers-Leave-MavenBank-A-Business-Analytics-Case-Study/blob/main/Churn_Script.py)
+**Key steps included:**
 
-[Tableau Continuation](https://github.com/a-paija/Bank-Customer-Churn-Visualization)
+- Standardizing numeric formats (currency → float)  
+- Cleaning inconsistent categorical values (e.g., geography labels)  
+- Handling missing values and removing duplicates  
+- Merging customer and account datasets  
+- Engineering new features (age groups, credit score segments)  
 
-Data Source: [Maven Analytics](https://mavenanalytics.io/data-playground/bank-customer-churn)
+These steps ensured the dataset was suitable for both exploratory analysis and predictive modeling.
+
+---
+
+# 🟩 Executive Summary
+
+Mavenland Bank exhibits an overall churn rate of approximately **20.4%**, meaning **1 in 5 customers leave**, which is elevated relative to industry expectations.
+
+However, churn is not evenly distributed—it is highly concentrated in specific customer segments:
+
+- **Germany:** ~32% churn  
+- **Other regions:** ~16% churn  
+- **Customers aged 50–60:** ~56% churn  
+- **Female customers:** 25% churn  
+- **Male customers:** 16.5% churn  
+
+Predictive modeling further reveals that churn is driven primarily by:
+
+- Age  
+- Number of products  
+- Account balance  
+- Estimated salary  
+
+Most importantly, churn risk is **predictable and segmentable**:
+
+- ~7% of customers are high-risk but represent high-value accounts  
+- These customers tend to have higher balances and more products  
+
+**Conclusion:**
+
+The primary issue is not customer acquisition, but the bank’s inability to retain high-value, high-risk customers effectively.
+
+---
+
+# 🟨 Churn Trends & Customer Segmentation
+
+Churn patterns reveal that customer attrition is structurally driven by demographic and behavioral factors rather than random occurrence.
+
+- **Overall churn rate:** 20.4%  
+- **High-risk segments:** >50% churn  
+- **Low-risk segments:** <10% churn  
+
+**Business Insight:**  
+Churn is systematic and segment-driven, meaning targeted interventions outperform broad strategies.
+
+---
+
+# 🟨 Regional Performance Insights
+
+Churn varies significantly across geographic regions:
+
+- **Germany:** ~32% churn (highest risk)  
+- **France & Spain:** ~16% churn  
+
+**Business Insight:**  
+Germany is a high-priority market requiring targeted retention strategies.
+
+---
+
+# 🟨 Demographic & Behavioral Drivers
+
+Churn is strongly influenced by customer characteristics:
+
+**Age:**
+- 51–60: ~56% churn  
+- 18–30: ~7.5% churn  
+
+**Gender:**
+- Female: ~25% churn  
+- Male: ~16.5% churn  
+
+**Credit Score:**
+- Poor credit: ~22% churn  
+- Good credit: ~18.6% churn  
+
+**Business Insight:**  
+Churn risk increases with age and financial exposure, requiring personalized retention strategies.
+
+---
+
+# 🟨 Predictive Modeling & Key Drivers
+
+A **Random Forest model** was developed:
+
+- **Accuracy:** 86.7%  
+- **Precision:** 75.7%  
+- **Recall:** 51.4%  
+
+**Key predictors:**
+
+- Age  
+- Number of products  
+- Balance  
+- Estimated salary  
+
+**Business Insight:**  
+Churn can be predicted with high accuracy, though recall can be improved.
+
+---
+
+# 🟧 Customer Risk Segmentation
+
+Customers were segmented into three risk tiers:
+
+### High Risk (~7%)
+- Age 45–65  
+- High balances  
+- Multiple products  
+
+### Medium Risk (~10%)
+- Moderate profiles  
+- Early warning segment  
+
+### Low Risk (~83%)
+- Younger  
+- Lower balances  
+- Fewer products  
+
+**Business Insight:**  
+A small segment (~7%) represents disproportionate revenue risk.
+
+---
+
+# 🟥 Model Performance & Limitations
+
+Limitations include:
+
+- Imbalanced dataset (~20% churn)  
+- Limited behavioral features  
+- No hyperparameter tuning  
+
+**Business Insight:**  
+Even a baseline model provides actionable predictive power.
+
+---
+
+# 🟩 Strategic Recommendations & Actions
+
+## 1. Target High-Risk, High-Value Customers
+**Impact:** High  
+- Prioritize customers aged 45+ with high balances  
+- Assign relationship managers  
+- Offer tailored incentives  
+
+## 2. Focus on High-Churn Regions (Germany)
+**Impact:** High  
+- Investigate regional drivers  
+- Implement localized strategies  
+
+## 3. Develop Demographic-Specific Strategies
+**Impact:** High  
+- Address higher churn among female customers  
+- Personalize engagement  
+
+## 4. Improve Predictive Model Performance
+**Impact:** Medium  
+- Add behavioral data  
+- Optimize model thresholds  
+
+## 5. Build Proactive Retention Systems
+**Impact:** High  
+- Deploy early-warning systems  
+- Automate retention workflows  
+
+---
+
+# 🟩 Final Summary
+
+This project demonstrates a complete end-to-end churn analysis workflow:
+
+- Data cleaning  
+- Exploratory analysis  
+- Predictive modeling  
+- Segmentation  
+- Strategic recommendations  
+
+**Key Takeaway:**  
+Customer churn is predictable, concentrated, and highly actionable with a structured, data-driven approach.
+
+By focusing on high-risk, high-value customers, Mavenland Bank can significantly reduce churn, stabilize revenue, and improve long-term profitability.
