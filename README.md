@@ -140,7 +140,7 @@ Germany is a high-priority market requiring targeted retention strategies.
 
 <details> <summary>🟩 View Code</summary>
 
-<img src="Images/Churn Rate by Geography.png" alt="Geography" width="750" height="850"/>
+<img src="Images/Churn Rate by Geography.png" alt="Geography" width="550" height="650"/>
 
 ```python
 geo_churn = df.groupby('Geography')['Exited'].mean().reset_index()
@@ -183,7 +183,7 @@ Churn risk increases with age and financial exposure, requiring personalized ret
 
 <details> <summary>🟩 View Code</summary>
 
-<img src="Images/Churn Rate by Gender.png" alt="Gender" width="750" height="850"/>
+<img src="Images/Churn Rate by Gender.png" alt="Gender" width="550" height="650"/>
 
 ```python
 gender_churn = df.groupby('Gender')['Exited'].mean().reset_index()
@@ -202,7 +202,7 @@ plt.show()
 ```
 Analyzes churn differences by gender.
 
-<img src="Images/Churn Rate by Age Group.png" alt="Age" width="750" height="850"/>
+<img src="Images/Churn Rate by Age Group.png" alt="Age" width="550" height="650"/>
 
 ```python
 age_bins = pd.cut(df['Age'], bins=[18, 30, 40, 50, 60, 70],
@@ -224,7 +224,7 @@ plt.show()
 ```
 Shows churn variation across age groups.
 
-<img src="Images/Churn Rate by Credit Score Group.png" alt="Credit Score" width="750" height="850"/>
+<img src="Images/Churn Rate by Credit Score Group.png" alt="Credit Score" width="550" height="650"/>
 
 ```python
 credit_bins = [300, 579, 669, 739, 850]
@@ -272,7 +272,7 @@ Churn can be predicted with high accuracy, though recall can be improved.
 
 </details> <details> <summary>🟩 View Code</summary>
 
-<img src="Images/Top Drivers of Customer Churn.png" alt="Churn Drivers" width="750" height="850"/>
+<img src="Images/Top Drivers of Customer Churn.png" alt="Churn Drivers" width="550" height="650"/>
 
 
 ```python
