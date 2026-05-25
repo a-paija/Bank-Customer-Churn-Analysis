@@ -140,6 +140,8 @@ Germany is a high-priority market requiring targeted retention strategies.
 
 <details> <summary>🟩 View Code</summary>
 
+<img src="Images/Churn Rate by Geography.png" alt="Geography" width="750" height="850"/>
+
 ```python
 geo_churn = df.groupby('Geography')['Exited'].mean().reset_index()
 plt.figure(figsize=(8, 6))
@@ -181,6 +183,8 @@ Churn risk increases with age and financial exposure, requiring personalized ret
 
 <details> <summary>🟩 View Code</summary>
 
+<img src="Images/Churn Rate by Gender.png" alt="Gender" width="750" height="850"/>
+
 ```python
 gender_churn = df.groupby('Gender')['Exited'].mean().reset_index()
 plt.figure(figsize=(8, 6))
@@ -197,6 +201,8 @@ for i, row in gender_churn.iterrows():
 plt.show()
 ```
 Analyzes churn differences by gender.
+
+<img src="Images/Churn Rate by Age Group.png" alt="Age" width="750" height="850"/>
 
 ```python
 age_bins = pd.cut(df['Age'], bins=[18, 30, 40, 50, 60, 70],
@@ -217,6 +223,8 @@ for i, row in age_churn.iterrows():
 plt.show()
 ```
 Shows churn variation across age groups.
+
+<img src="Images/Churn Rate by Credit Score Group.png" alt="Credit Score" width="750" height="850"/>
 
 ```python
 credit_bins = [300, 579, 669, 739, 850]
@@ -263,6 +271,9 @@ A **Random Forest model** was developed:
 Churn can be predicted with high accuracy, though recall can be improved.
 
 </details> <details> <summary>🟩 View Code</summary>
+
+<img src="Images/Top Drivers of Customer Churn.png" alt="Churn Drivers" width="750" height="850"/>
+
 
 ```python
 features = ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance',
