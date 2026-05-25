@@ -118,7 +118,15 @@ Churn patterns reveal that customer attrition is structurally driven by demograp
 **Business Insight:**  
 Churn is systematic and segment-driven, meaning targeted interventions outperform broad strategies.
 
+<details> <summary>🟩 View Code</summary>
 
+```python
+overall_churn = df['Exited'].mean()
+print(f"Overall churn rate: {overall_churn:.2%}")
+```
+Calculates overall churn percentage.
+
+</details>
 
 ## 🟨 Regional Performance Insights
 
@@ -130,7 +138,27 @@ Churn varies significantly across geographic regions:
 **Business Insight:**  
 Germany is a high-priority market requiring targeted retention strategies.
 
+<details> <summary>🟩 View Code</summary>
 
+```python
+geo_churn = df.groupby('Geography')['Exited'].mean().reset_index()
+plt.figure(figsize=(8, 6))
+sns.barplot(x='Geography', y='Exited', data=geo_churn, palette="viridis")
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.ylim(0, 0.4)
+plt.title("Churn Rate by Geography", fontsize=14)
+plt.ylabel("Churn Rate (%)", fontsize=12)
+plt.xlabel("Geography", fontsize=12)
+for i, row in geo_churn.iterrows():
+    plt.text(i, row['Exited'] + 0.01,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+plt.show()
+```
+
+Compares churn rates across geographic regions.
+
+</details>
 
 ## 🟨 Demographic & Behavioral Drivers
 
@@ -151,7 +179,70 @@ Churn is strongly influenced by customer characteristics:
 **Business Insight:**  
 Churn risk increases with age and financial exposure, requiring personalized retention strategies.
 
+<details> <summary>🟩 View Code</summary>
 
+```python
+gender_churn = df.groupby('Gender')['Exited'].mean().reset_index()
+plt.figure(figsize=(8, 6))
+sns.barplot(x='Gender', y='Exited', data=gender_churn, palette="viridis")
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.ylim(0, 0.30)
+plt.title("Churn Rate by Gender", fontsize=14)
+plt.ylabel("Churn Rate (%)", fontsize=12)
+plt.xlabel("Gender", fontsize=12)
+for i, row in gender_churn.iterrows():
+    plt.text(i, row['Exited'] + 0.01,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+plt.show()
+```
+Analyzes churn differences by gender.
+
+```python
+age_bins = pd.cut(df['Age'], bins=[18, 30, 40, 50, 60, 70],
+                  labels=['18–30', '31–40', '41–50', '51–60', '61–70'])
+age_churn = df.groupby(age_bins)['Exited'].mean().reset_index()
+age_churn.columns = ['Age Group', 'Exited']
+plt.figure(figsize=(8, 6))
+sns.barplot(x='Age Group', y='Exited', data=age_churn, palette="viridis")
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.ylim(0, 0.65)
+plt.title("Churn Rate by Age Group", fontsize=14)
+plt.ylabel("Churn Rate (%)", fontsize=12)
+plt.xlabel("Age Group", fontsize=12)
+for i, row in age_churn.iterrows():
+    plt.text(i, row['Exited'] + 0.02,
+             f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
+plt.show()
+```
+Shows churn variation across age groups.
+
+```python
+credit_bins = [300, 579, 669, 739, 850]
+credit_labels = ['Poor', 'Fair', 'Good', 'Excellent']
+df['CreditScoreGroup'] = pd.cut(
+    df['CreditScore'], bins=credit_bins, labels=credit_labels)
+credit_churn = df.groupby('CreditScoreGroup')['Exited'].agg(
+    ['count', 'mean']).reset_index()
+credit_churn.columns = ['CreditScoreGroup', 'CustomerCount', 'ChurnRate']
+plt.figure(figsize=(8, 6))
+sns.barplot(x='CreditScoreGroup', y='ChurnRate', data=credit_churn,
+            order=credit_labels, palette="viridis")
+plt.gca().yaxis.set_major_formatter(
+    plt.FuncFormatter(lambda y, _: f'{y*100:.1f}%'))
+plt.ylim(0.16, 0.23)
+plt.title("Churn Rate by Credit Score Group", fontsize=14)
+plt.ylabel("Churn Rate (%)", fontsize=12)
+plt.xlabel("Credit Score Group", fontsize=12)
+for i, row in credit_churn.iterrows():
+    plt.text(i, row['ChurnRate'] + 0.005,
+             f"{row['ChurnRate']*100:.1f}%", ha='center', fontweight='bold')
+plt.show()
+```
+Evaluates churn by credit score segments.
+
+</details>
 
 ## 🟨 Predictive Modeling & Key Drivers
 
@@ -171,7 +262,44 @@ A **Random Forest model** was developed:
 **Business Insight:**  
 Churn can be predicted with high accuracy, though recall can be improved.
 
+</details> <details> <summary>🟩 View Code</summary>
 
+```python
+features = ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance',
+            'NumOfProducts', 'HasCrCard', 'IsActiveMember', 'EstimatedSalary']
+X = pd.get_dummies(df[features], drop_first=True)
+y = df['Exited']
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, stratify=y, random_state=42)
+
+rf_model = RandomForestClassifier(
+    n_estimators=300, min_samples_split=5, random_state=42)
+rf_model.fit(X_train, y_train)
+rf_preds = rf_model.predict(X_test)
+
+print("Random Forest Accuracy:", accuracy_score(y_test, rf_preds))
+print(classification_report(y_test, rf_preds))
+```
+Builds and evaluates the churn prediction model.
+
+```python
+rf_importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': rf_model.feature_importances_ * 100
+}).sort_values('Importance', ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(data=rf_importance.head(10), x='Importance',
+            y='Feature', palette="viridis")
+plt.title("Top Drivers of Customer Churn", fontsize=14)
+plt.xlabel("Relative Impact on Churn (%)", fontsize=12)
+plt.ylabel("Customer Attribute", fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+Identifies key drivers influencing churn.
+
+</details>
 
 ## 🟧 Customer Risk Segmentation
 
@@ -194,6 +322,36 @@ Customers were segmented into three risk tiers:
 **Business Insight:**  
 A small segment (~7%) represents disproportionate revenue risk.
 
+🟧 Customer Risk Segmentation
+<details> <summary>🟩 View Code</summary>
+  
+```python
+results = X_test.copy()
+
+results['Actual'] = y_test.values
+results['Churn_Prob'] = rf_model.predict_proba(X_test)[:, 1]
+results['Prediction'] = rf_model.predict(X_test)
+
+results['Risk_Tier'] = pd.cut(
+    results['Churn_Prob'],
+    bins=[-0.001, 0.40, 0.70, 1.001],
+    labels=['Low Risk', 'Medium Risk', 'High Risk'],
+    include_lowest=True
+)
+```
+Assigns customers into churn risk tiers.
+
+```python
+risk_counts = results['Risk_Tier'].value_counts().sort_index()
+print(risk_counts)
+
+risk_stats = results.groupby('Risk_Tier')[
+    ['Age', 'Balance', 'NumOfProducts', 'EstimatedSalary']].mean().round(2)
+print(risk_stats)
+```
+Summarizes customer profiles by risk segment.
+
+</details>
 
 
 ## 🟥 Model Performance & Limitations
