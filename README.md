@@ -1,4 +1,4 @@
-# 🟦 Project Background
+## 🟦 Project Background
 
 Customer churn is a critical challenge for financial institutions, as retaining existing customers is significantly more cost-effective than acquiring new ones. Mavenland Bank has experienced elevated churn rates but lacks a structured, data-driven understanding of who is leaving, why they leave, and how to intervene effectively.
 
@@ -29,7 +29,7 @@ An interactive Tableau Dashboard can be found [here](https://public.tableau.com/
 
 ---
 
-# 🟦 Business Objective and Data Structure
+## 🟦 Business Objective and Data Structure
 
 The primary objective of this analysis is to **predict customer churn and identify actionable retention opportunities** to stabilize revenue and improve customer lifetime value.
 
@@ -41,9 +41,9 @@ Specifically, this project aims to:
 - Build a predictive model to classify at-risk customers  
 - Translate insights into targeted retention strategies  
 
----
 
-# 🟦 Data Structure & Initial Checks
+
+## 🟦 Data Structure & Initial Checks
 
 The dataset consists of **10,000 customer records with 13 features** spanning:
 
@@ -54,9 +54,9 @@ The dataset consists of **10,000 customer records with 13 features** spanning:
 
 Data originated from multiple tables and required consolidation before analysis.
 
----
 
-# 🟦 Data Cleaning (Python)
+
+## 🟦 Data Cleaning (Python)
 
 Before analysis, extensive data preparation was conducted to ensure accuracy and usability.
 
@@ -70,11 +70,16 @@ Before analysis, extensive data preparation was conducted to ensure accuracy and
 
 These steps ensured the dataset was suitable for both exploratory analysis and predictive modeling.
 
----
 
-# 🟩 Executive Summary
 
-Mavenland Bank exhibits an overall churn rate of approximately **20.4%**, meaning **1 in 5 customers leave**, which is elevated relative to industry expectations.
+## 🟩 Executive Summary
+
+Below is a screenshot of the Churn Demographics Dashboard Tableau Visualisations. The entire interactive Tableau Dashboard can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1).
+
+<img src="Images/Churn Demographics.png" alt="ChurnDemographics" width="750" height="850"/>
+
+
+Mavenland Bank exhibits an overall churn rate of **20.37%**, meaning approximately **1 in 5 customers leave**, which is elevated relative to industry expectations.
 
 However, churn is not evenly distributed—it is highly concentrated in specific customer segments:
 
@@ -100,9 +105,9 @@ Most importantly, churn risk is **predictable and segmentable**:
 
 The primary issue is not customer acquisition, but the bank’s inability to retain high-value, high-risk customers effectively.
 
----
 
-# 🟨 Churn Trends & Customer Segmentation
+
+## 🟨 Churn Trends & Customer Segmentation
 
 Churn patterns reveal that customer attrition is structurally driven by demographic and behavioral factors rather than random occurrence.
 
@@ -113,9 +118,9 @@ Churn patterns reveal that customer attrition is structurally driven by demograp
 **Business Insight:**  
 Churn is systematic and segment-driven, meaning targeted interventions outperform broad strategies.
 
----
 
-# 🟨 Regional Performance Insights
+
+## 🟨 Regional Performance Insights
 
 Churn varies significantly across geographic regions:
 
@@ -125,9 +130,9 @@ Churn varies significantly across geographic regions:
 **Business Insight:**  
 Germany is a high-priority market requiring targeted retention strategies.
 
----
 
-# 🟨 Demographic & Behavioral Drivers
+
+## 🟨 Demographic & Behavioral Drivers
 
 Churn is strongly influenced by customer characteristics:
 
@@ -146,9 +151,9 @@ Churn is strongly influenced by customer characteristics:
 **Business Insight:**  
 Churn risk increases with age and financial exposure, requiring personalized retention strategies.
 
----
 
-# 🟨 Predictive Modeling & Key Drivers
+
+## 🟨 Predictive Modeling & Key Drivers
 
 A **Random Forest model** was developed:
 
@@ -166,9 +171,9 @@ A **Random Forest model** was developed:
 **Business Insight:**  
 Churn can be predicted with high accuracy, though recall can be improved.
 
----
 
-# 🟧 Customer Risk Segmentation
+
+## 🟧 Customer Risk Segmentation
 
 Customers were segmented into three risk tiers:
 
@@ -189,9 +194,9 @@ Customers were segmented into three risk tiers:
 **Business Insight:**  
 A small segment (~7%) represents disproportionate revenue risk.
 
----
 
-# 🟥 Model Performance & Limitations
+
+## 🟥 Model Performance & Limitations
 
 Limitations include:
 
@@ -202,9 +207,9 @@ Limitations include:
 **Business Insight:**  
 Even a baseline model provides actionable predictive power.
 
----
 
-# 🟩 Strategic Recommendations & Actions
+
+## 🟩 Strategic Recommendations & Actions
 
 ## 1. Target High-Risk, High-Value Customers
 **Impact:** High  
@@ -232,9 +237,9 @@ Even a baseline model provides actionable predictive power.
 - Deploy early-warning systems  
 - Automate retention workflows  
 
----
 
-# 🟩 Final Summary
+
+## 🟩 Final Summary
 
 This project demonstrates a complete end-to-end churn analysis workflow:
 
