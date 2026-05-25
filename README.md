@@ -25,7 +25,7 @@ Together, they enable both proactive intervention and strategic decision-making.
 
 Targeted Python scripts and full analysis can be found [here](https://github.com/a-paija/Bank-Customer-Churn-Analysis/blob/main/Churn_Script.py)
 
-Additional visualization work can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1)
+An interactive Tableau Dashboard can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1)
 
 ---
 
