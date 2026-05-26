@@ -203,7 +203,7 @@ The model identifies the following as the most influential drivers:
 - High-value customers (high balance + salary) are disproportionately at risk  
 - The model enables **targeted retention strategies**, rather than broad, inefficient campaigns  
 
-### 🟩 How This Model Can Be Used
+### How This Model Can Be Used
 
 - **Proactive Retention Campaigns**  
   → Flag at-risk customers before churn occurs  
