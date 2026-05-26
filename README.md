@@ -105,7 +105,7 @@ Most importantly, churn risk is **predictable and segmentable**:
 The primary issue is not customer acquisition, but the bank’s inability to retain high-value, high-risk customers effectively.
 
 <details>
-<summary>🟩 View Code & Supporting Analysis</summary>
+<summary>🟩 View Codes & Additional Graphs</summary>
 
 ```python
 overall_churn = df['Exited'].mean()
