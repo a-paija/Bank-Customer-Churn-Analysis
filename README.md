@@ -319,7 +319,7 @@ Customers were segmented into **three actionable churn risk tiers** based on pre
 | 🟩 Low Risk | Maintain & grow | Low-cost engagement, upsell opportunities |
 
 
-### 🟨 Business Insight
+### Business Insight
 
 A small portion of customers (**~7%**) represents **disproportionate financial risk**, meaning:
 
@@ -360,8 +360,6 @@ Summarizes customer profiles by risk segment.
 ## 🟩 Strategic Recommendations & Action Plan
 
 Recommendations are prioritized based on **expected revenue impact** and **feasibility**, directly tied to model insights.
-
-### Priority Action Framework
 
 | Priority | Initiative | Target Segment | Business Objective | Key Actions | Expected Impact |
 |----------|------------|----------------|--------------------|-------------|-----------------|
