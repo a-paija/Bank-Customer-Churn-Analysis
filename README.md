@@ -76,7 +76,7 @@ These steps ensured the dataset was suitable for both exploratory analysis and p
 
 Below is a screenshot of the Churn Demographics Dashboard Tableau Visualisations. The entire interactive Tableau Dashboard can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1).
 
-<img src="Images/Churn Demographics.png" alt="ChurnDemographics" width="750" height="850"/>
+<img src="Images/Churn Demo.png" alt="ChurnDemographics" width="750" height="850"/>
 
 Mavenland Bank exhibits an overall churn rate of **20.37%**, meaning approximately **1 in 5 customers leave**, which is elevated relative to industry expectations.
 
