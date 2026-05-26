@@ -183,7 +183,7 @@ Evaluates churn by credit score segments.
 A **Random Forest classification model** was developed to predict whether a customer is likely to churn.
 
 **Purpose of the Model:**  
-The goal of this model is not just accuracy, but **actionability** — identifying *which customers are at risk before they leave*, so the bank can intervene proactively rather than reactively.
+The goal of this model is not just accuracy, but **actionability**, identifying *which customers are at risk before they leave*, so the bank can intervene proactively rather than reactively.
 
 ### Model Performance
 
