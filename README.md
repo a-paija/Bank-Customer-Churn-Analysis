@@ -276,25 +276,25 @@ Customers were segmented into **three actionable churn risk tiers** based on pre
 
 | Risk Level   | Probability Range | % of Customers |
 |--------------|------------------|----------------|
-| 🟩 Low       | 0.00 – 0.40       | ~83%           |
-| 🟧 Medium    | 0.40 – 0.70       | ~10%           |
-| 🟥 High      | 0.70 – 1.00       | ~7%            |
+| Low       | 0.00 – 0.40       | ~83%           |
+| Medium    | 0.40 – 0.70       | ~10%           |
+| High      | 0.70 – 1.00       | ~7%            |
 
 ### Segment Profiles & Interpretation
 
 | Segment | Key Characteristics | Business Interpretation |
 |--------|--------------------|--------------------------|
-| 🟥 High Risk | Age 45–65, high balances, multiple products | High-value customers most likely to churn → **largest revenue risk** |
-| 🟧 Medium Risk | Moderate balances, moderate engagement | **Early warning segment** → risk of escalation without intervention |
-| 🟩 Low Risk | Younger, lower balances, fewer products | Stable base → **low immediate churn risk** |
+| High Risk | Age 45–65, high balances, multiple products | High-value customers most likely to churn → **largest revenue risk** |
+| Medium Risk | Moderate balances, moderate engagement | **Early warning segment** → risk of escalation without intervention |
+| Low Risk | Younger, lower balances, fewer products | Stable base → **low immediate churn risk** |
 
 ### Recommended Actions
 
 | Segment | Strategy | Tactics |
 |--------|----------|----------|
-| 🟥 High Risk | Immediate retention | Dedicated account managers, personalized offers, incentives |
-| 🟧 Medium Risk | Prevent churn | Targeted campaigns, engagement strategies |
-| 🟩 Low Risk | Maintain & grow | Low-cost engagement, upsell opportunities |
+| High Risk | Immediate retention | Dedicated account managers, personalized offers, incentives |
+| Medium Risk | Prevent churn | Targeted campaigns, engagement strategies |
+| Low Risk | Maintain & grow | Low-cost engagement, upsell opportunities |
 
 
 ### Business Insight
