@@ -339,7 +339,7 @@ Summarizes customer profiles by risk segment.
 
 Recommendations are prioritized based on **expected revenue impact** and **feasibility**, directly tied to model insights.
 
-| Initiative | Target Segment | Business Objective | Key Actions | Expected Impact |
+| Initiative | Target Segment |  Objective |  Action | Impact |
 |------------|----------------|--------------------|-------------|-----------------|
 | Retain High-Value, High-Risk Customers | High Risk (Age 45+, high balance, multi-product) | Prevent immediate revenue loss | Assign relationship managers, deploy personalized incentives, proactive outreach | Protects largest revenue at risk; highest ROI retention effort |
 | Address Regional Churn Concentration | Germany region | Reduce geographically concentrated churn | Conduct root-cause analysis (pricing, competition, service), implement localized campaigns | Reduces systemic churn drivers in high-risk market |
