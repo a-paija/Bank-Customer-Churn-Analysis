@@ -57,7 +57,7 @@ Below is a screenshot of the Churn Demographics Dashboard Tableau Visualisations
 
 Mavenland Bank exhibits an overall churn rate of **20.37%**, meaning approximately **1 in 5 customers leave**, which is elevated relative to industry expectations.
 
-However, churn is not evenly distributed—it is highly concentrated in specific customer segments:
+However, churn is not evenly distributed, it is highly concentrated in specific customer segments:
 
 - **Germany:** ~32% churn  
 - **Other regions:** ~16% churn  
