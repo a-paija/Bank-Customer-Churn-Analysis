@@ -78,7 +78,6 @@ Below is a screenshot of the Churn Demographics Dashboard Tableau Visualisations
 
 <img src="Images/Churn Demographics.png" alt="ChurnDemographics" width="750" height="850"/>
 
-
 Mavenland Bank exhibits an overall churn rate of **20.37%**, meaning approximately **1 in 5 customers leave**, which is elevated relative to industry expectations.
 
 However, churn is not evenly distributed—it is highly concentrated in specific customer segments:
@@ -105,40 +104,14 @@ Most importantly, churn risk is **predictable and segmentable**:
 
 The primary issue is not customer acquisition, but the bank’s inability to retain high-value, high-risk customers effectively.
 
-
-
-## 🟨 Churn Trends & Customer Segmentation
-
-Churn patterns reveal that customer attrition is structurally driven by demographic and behavioral factors rather than random occurrence.
-
-- **Overall churn rate:** 20.4%  
-- **High-risk segments:** >50% churn  
-- **Low-risk segments:** <10% churn  
-
-**Business Insight:**  
-Churn is systematic and segment-driven, meaning targeted interventions outperform broad strategies.
-
-<details> <summary>🟩 View Code</summary>
+<details>
+<summary>🟩 View Code & Supporting Analysis</summary>
 
 ```python
 overall_churn = df['Exited'].mean()
 print(f"Overall churn rate: {overall_churn:.2%}")
 ```
 Calculates overall churn percentage.
-
-</details>
-
-## 🟨 Regional Performance Insights
-
-Churn varies significantly across geographic regions:
-
-- **Germany:** ~32% churn (highest risk)  
-- **France & Spain:** ~16% churn  
-
-**Business Insight:**  
-Germany is a high-priority market requiring targeted retention strategies.
-
-<details> <summary>🟩 View Code</summary>
 
 <img src="Images/Churn Rate by Geography.png" alt="Geography" width="550" height="650"/>
 
@@ -157,31 +130,7 @@ for i, row in geo_churn.iterrows():
              f"{row['Exited']*100:.1f}%", ha='center', fontweight='bold')
 plt.show()
 ```
-
 Compares churn rates across geographic regions.
-
-</details>
-
-## 🟨 Demographic & Behavioral Drivers
-
-Churn is strongly influenced by customer characteristics:
-
-**Age:**
-- 51–60: ~56% churn  
-- 18–30: ~7.5% churn  
-
-**Gender:**
-- Female: ~25% churn  
-- Male: ~16.5% churn  
-
-**Credit Score:**
-- Poor credit: ~22% churn  
-- Good credit: ~18.6% churn  
-
-**Business Insight:**  
-Churn risk increases with age and financial exposure, requiring personalized retention strategies.
-
-<details> <summary>🟩 View Code</summary>
 
 <img src="Images/Churn Rate by Gender.png" alt="Gender" width="550" height="650"/>
 
@@ -343,62 +292,34 @@ Identifies key drivers influencing churn.
 
 ## 🟧 Customer Risk Segmentation
 
-Using predicted churn probabilities from the model, customers were segmented into **three actionable risk tiers**.
+Customers were segmented into **three actionable churn risk tiers** based on predicted probabilities.
 
-### How Risk Was Identified
+### Risk Definition
 
-- The model outputs a **probability of churn (0 → 1)** for each customer  
-- Customers were grouped using thresholds:
+| Risk Level   | Probability Range | % of Customers |
+|--------------|------------------|----------------|
+| 🟩 Low       | 0.00 – 0.40       | ~83%           |
+| 🟧 Medium    | 0.40 – 0.70       | ~10%           |
+| 🟥 High      | 0.70 – 1.00       | ~7%            |
 
-  - **Low Risk:** 0.00 – 0.40  
-  - **Medium Risk:** 0.40 – 0.70  
-  - **High Risk:** 0.70 – 1.00  
+### Segment Profiles & Interpretation
 
-This transforms raw predictions into **business-friendly categories** that can drive decision-making.
+| Segment | Key Characteristics | Business Interpretation |
+|--------|--------------------|--------------------------|
+| 🟥 High Risk | Age 45–65, high balances, multiple products | High-value customers most likely to churn → **largest revenue risk** |
+| 🟧 Medium Risk | Moderate balances, moderate engagement | **Early warning segment** → risk of escalation without intervention |
+| 🟩 Low Risk | Younger, lower balances, fewer products | Stable base → **low immediate churn risk** |
 
-### Customer Segments
+### Recommended Actions
 
-#### 🟥 High Risk (~7%)
-- Age 45–65  
-- High balances  
-- Multiple products  
+| Segment | Strategy | Tactics |
+|--------|----------|----------|
+| 🟥 High Risk | Immediate retention | Dedicated account managers, personalized offers, incentives |
+| 🟧 Medium Risk | Prevent churn | Targeted campaigns, engagement strategies |
+| 🟩 Low Risk | Maintain & grow | Low-cost engagement, upsell opportunities |
 
-- **Interpretation:**  
-These are **high-value customers most likely to leave**, representing the greatest revenue risk.
 
-#### 🟧 Medium Risk (~10%)
-- Moderate balances and engagement  
-- Transitional behavior  
-
-- **Interpretation:**  
-This is an **early warning segment** — customers who may churn without intervention.
-
-#### 🟩 Low Risk (~83%)
-- Younger customers  
-- Lower balances  
-- Fewer products  
-
-- **Interpretation:**  
-Stable customer base with low immediate churn risk.
-
-### Business Value of Segmentation
-
-This segmentation turns predictions into **clear business actions**:
-
-- **High Risk → Immediate intervention**
-  - Dedicated account managers  
-  - Personalized offers  
-  - Retention incentives  
-
-- **Medium Risk → Prevent escalation**
-  - Targeted campaigns  
-  - Engagement strategies  
-
-- **Low Risk → Maintain & monitor**
-  - Low-cost digital engagement  
-  - Upsell opportunities  
-
-### 🟨 Key Insight
+### 🟨 Business Insight
 
 A small portion of customers (**~7%**) represents **disproportionate financial risk**, meaning:
 
