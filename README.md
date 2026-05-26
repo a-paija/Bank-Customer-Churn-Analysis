@@ -84,7 +84,7 @@ Most importantly, churn risk is **predictable and segmentable**:
 The primary issue is not customer acquisition, but the bank’s inability to retain high-value, high-risk customers effectively.
 
 <details>
-<summary>🟩 View Codes & Additional Graphs</summary>
+<summary>🟩 Click to View Codes & Additional Graphs</summary>
 
 ```python
 overall_churn = df['Exited'].mean()
@@ -229,7 +229,7 @@ The model identifies the following as the most influential drivers:
 
 </details> 
 <details> 
-<summary>🟩 View Code</summary>
+<summary>🟩 Click to View Code</summary>
 
 <img src="Images/Top Drivers of Customer Churn.png" alt="Churn Drivers" width="550" height="650"/>
 
@@ -307,7 +307,7 @@ A small portion of customers (**~7%**) represents **disproportionate financial r
 → Even small improvements in this segment can yield **significant revenue impact**
 
 <details> 
-<summary>🟩 View Code</summary>
+<summary>🟩 Click to View Code</summary>
 
 ```python
 results = X_test.copy()
