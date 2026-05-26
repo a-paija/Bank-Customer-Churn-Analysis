@@ -1,10 +1,10 @@
 ## 🟦 Project Background
 
-Customer churn is a critical challenge for financial institutions, as retaining existing customers is significantly more cost-effective than acquiring new ones. Mavenland Bank has experienced elevated churn rates but lacks a structured, data-driven understanding of who is leaving, why they leave, and how to intervene effectively.
+Customer churn is a major revenue loss for financial institutions, as retaining existing customers is significantly more cost-effective than acquiring new ones. Mavenland Bank has experienced elevated churn rates but lacks a structured, data-driven understanding of who is leaving, why they leave, and how to intervene effectively.
 
-The dataset used in this project consists of **10,000 customer records**, combining demographic attributes, account behavior, and churn outcomes. However, due to inconsistencies in the raw data and lack of integrated analysis, the organization is unable to clearly identify churn drivers or implement targeted retention strategies.
+Due to lack of integrated analysis, Mavenland Bank is unable to clearly identify churn drivers or implement targeted retention strategies. This project addresses that problem by using customer data (10,000 records across demographics, financials, and behavior) to **predict and prevent churn before it happens**.
 
-Without structured analysis, Mavenland Bank is unable to answer key business questions such as:
+This project addresses business questions such as:
 
 - Which customer segments are most likely to churn  
 - What behavioral or financial patterns signal churn risk  
@@ -14,17 +14,18 @@ Without structured analysis, Mavenland Bank is unable to answer key business que
 **Overall Goal:**  
 Reduce customer churn by **25% within two quarters** by identifying high-risk customers and enabling targeted, data-driven retention strategies.
 
-This project bridges that gap by transforming raw customer data into actionable insights using **Python (Pandas, Scikit-learn)**, data visualization, and predictive modeling.
+This project transforms raw customer data into actionable insights using **Python (Pandas, Scikit-learn)**, Tableau data visualizations, and predictive modeling.
 
 - Exploratory analysis highlights where churn risk is concentrated  
 - Predictive modeling explains why customers churn and who is at risk  
 
-Together, they enable both proactive intervention and strategic decision-making.
+---
 
 Targeted Python scripts and full analysis can be found [here](https://github.com/a-paija/Bank-Customer-Churn-Analysis/blob/main/Churn_Script.py)
 
 An interactive Tableau Dashboard can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1)
 
+---
 
 ## 🟦 Business Objective & Data Overview
 
@@ -344,11 +345,3 @@ Recommendations are prioritized based on **expected revenue impact** and **feasi
 | 🔴 | Deploy Proactive Retention System | Medium → High Risk pipeline | Prevent churn escalation | Build early-warning triggers, automate CRM outreach, lifecycle-based engagement | Converts at-risk customers before churn occurs |
 | 🟠 | Personalize Demographic Strategies | Female customer segment | Improve engagement & retention equity | Tailor messaging, offers, and product positioning based on behavioral insights | Closes segment-specific churn gaps |
 | 🟡 | Enhance Predictive Model | All segments | Improve targeting accuracy | Incorporate behavioral data (transactions, engagement), optimize thresholds, retrain model | Increases precision of retention spend over time |
-
-
-
-
-
-
-
-## 🟩 Final Summary
