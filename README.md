@@ -357,63 +357,24 @@ Summarizes customer profiles by risk segment.
 
 </details>
 
-## 🟥 Model Performance & Limitations
+## 🟩 Strategic Recommendations & Action Plan
 
-### Key Limitations
+Recommendations are prioritized based on **expected revenue impact** and **feasibility**, directly tied to model insights.
 
-- **Class Imbalance (~20% churn rate)**  
-  → The model is trained on more non-churners than churners, which can bias predictions  
+### Priority Action Framework
 
-- **Limited Feature Set**  
-  → No behavioral data (transactions, app usage, customer support interactions)  
-  → These are often strong predictors of churn  
+| Priority | Initiative | Target Segment | Business Objective | Key Actions | Expected Impact |
+|----------|------------|----------------|--------------------|-------------|-----------------|
+| 🔴 | Retain High-Value, High-Risk Customers | High Risk (Age 45+, high balance, multi-product) | Prevent immediate revenue loss | Assign relationship managers, deploy personalized incentives, proactive outreach | Protects largest revenue at risk; highest ROI retention effort |
+| 🔴 | Address Regional Churn Concentration | Germany region | Reduce geographically concentrated churn | Conduct root-cause analysis (pricing, competition, service), implement localized campaigns | Reduces systemic churn drivers in high-risk market |
+| 🔴 | Deploy Proactive Retention System | Medium → High Risk pipeline | Prevent churn escalation | Build early-warning triggers, automate CRM outreach, lifecycle-based engagement | Converts at-risk customers before churn occurs |
+| 🟠 | Personalize Demographic Strategies | Female customer segment | Improve engagement & retention equity | Tailor messaging, offers, and product positioning based on behavioral insights | Closes segment-specific churn gaps |
+| 🟡 | Enhance Predictive Model | All segments | Improve targeting accuracy | Incorporate behavioral data (transactions, engagement), optimize thresholds, retrain model | Increases precision of retention spend over time |
 
-- **No Hyperparameter Optimization**  
-  → Model performance could be improved with tuning  
 
 
 
-## 🟩 Strategic Recommendations & Actions
-
-## 1. Target High-Risk, High-Value Customers
-**Impact:** High  
-- Prioritize customers aged 45+ with high balances  
-- Assign relationship managers  
-- Offer tailored incentives  
-
-## 2. Focus on High-Churn Regions (Germany)
-**Impact:** High  
-- Investigate regional drivers  
-- Implement localized strategies  
-
-## 3. Develop Demographic-Specific Strategies
-**Impact:** High  
-- Address higher churn among female customers  
-- Personalize engagement  
-
-## 4. Improve Predictive Model Performance
-**Impact:** Medium  
-- Add behavioral data  
-- Optimize model thresholds  
-
-## 5. Build Proactive Retention Systems
-**Impact:** High  
-- Deploy early-warning systems  
-- Automate retention workflows  
 
 
 
 ## 🟩 Final Summary
-
-This project demonstrates a complete end-to-end churn analysis workflow:
-
-- Data cleaning  
-- Exploratory analysis  
-- Predictive modeling  
-- Segmentation  
-- Strategic recommendations  
-
-**Key Takeaway:**  
-Customer churn is predictable, concentrated, and highly actionable with a structured, data-driven approach.
-
-By focusing on high-risk, high-value customers, Mavenland Bank can significantly reduce churn, stabilize revenue, and improve long-term profitability.
