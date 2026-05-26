@@ -254,26 +254,55 @@ Evaluates churn by credit score segments.
 
 ## 🟨 Predictive Modeling & Key Drivers
 
-A **Random Forest model** was developed:
+A **Random Forest classification model** was developed to predict whether a customer is likely to churn.
 
-- **Accuracy:** 86.7%  
-- **Precision:** 75.7%  
-- **Recall:** 51.4%  
+**Purpose of the Model:**  
+The goal of this model is not just accuracy, but **actionability** — identifying *which customers are at risk before they leave*, so the bank can intervene proactively rather than reactively.
 
-**Key predictors:**
+### Model Performance
 
-- Age  
-- Number of products  
-- Balance  
-- Estimated salary  
+- **Accuracy: 86.7%**  
+  → The model correctly predicts churn vs. non-churn in ~87% of cases overall.  
+  → However, accuracy alone can be misleading due to class imbalance (most customers do not churn).
 
-**Business Insight:**  
-Churn can be predicted with high accuracy, though recall can be improved.
+- **Precision: 75.7%**  
+  → Of all customers predicted to churn, ~76% actually churned.  
+  → This reflects how **reliable the model’s positive predictions are** (important for avoiding wasted retention efforts).
 
-</details> <details> <summary>🟩 View Code</summary>
+### Key Predictors of Churn
+
+The model identifies the following as the most influential drivers:
+
+- **Age** → Older customers show significantly higher churn rates  
+- **Number of Products** → Customers with more products are at higher risk (potential dissatisfaction or complexity)  
+- **Balance** → Higher balances correlate with increased churn risk (high-value customers leaving)  
+- **Estimated Salary** → Higher-income customers are more likely to churn, likely due to more alternatives  
+
+### Business Interpretation
+
+- Churn is **predictable and not random**  
+- High-value customers (high balance + salary) are disproportionately at risk  
+- The model enables **targeted retention strategies**, rather than broad, inefficient campaigns  
+
+### 🟩 How This Model Can Be Used
+
+- **Proactive Retention Campaigns**  
+  → Flag at-risk customers before churn occurs  
+
+- **Resource Allocation**  
+  → Focus retention budgets on customers most likely to leave  
+
+- **Personalization**  
+  → Tailor offers based on risk profile and key drivers  
+
+- **Early Warning System**  
+  → Integrate into CRM systems for real-time churn monitoring  
+
+</details> 
+<details> 
+<summary>🟩 View Code</summary>
 
 <img src="Images/Top Drivers of Customer Churn.png" alt="Churn Drivers" width="550" height="650"/>
-
 
 ```python
 features = ['CreditScore', 'Geography', 'Gender', 'Age', 'Tenure', 'Balance',
@@ -314,28 +343,71 @@ Identifies key drivers influencing churn.
 
 ## 🟧 Customer Risk Segmentation
 
-Customers were segmented into three risk tiers:
+Using predicted churn probabilities from the model, customers were segmented into **three actionable risk tiers**.
 
-### High Risk (~7%)
+### How Risk Was Identified
+
+- The model outputs a **probability of churn (0 → 1)** for each customer  
+- Customers were grouped using thresholds:
+
+  - **Low Risk:** 0.00 – 0.40  
+  - **Medium Risk:** 0.40 – 0.70  
+  - **High Risk:** 0.70 – 1.00  
+
+This transforms raw predictions into **business-friendly categories** that can drive decision-making.
+
+### Customer Segments
+
+#### 🟥 High Risk (~7%)
 - Age 45–65  
 - High balances  
 - Multiple products  
 
-### Medium Risk (~10%)
-- Moderate profiles  
-- Early warning segment  
+- **Interpretation:**  
+These are **high-value customers most likely to leave**, representing the greatest revenue risk.
 
-### Low Risk (~83%)
-- Younger  
+#### 🟧 Medium Risk (~10%)
+- Moderate balances and engagement  
+- Transitional behavior  
+
+- **Interpretation:**  
+This is an **early warning segment** — customers who may churn without intervention.
+
+#### 🟩 Low Risk (~83%)
+- Younger customers  
 - Lower balances  
 - Fewer products  
 
-**Business Insight:**  
-A small segment (~7%) represents disproportionate revenue risk.
+- **Interpretation:**  
+Stable customer base with low immediate churn risk.
 
-🟧 Customer Risk Segmentation
-<details> <summary>🟩 View Code</summary>
-  
+### Business Value of Segmentation
+
+This segmentation turns predictions into **clear business actions**:
+
+- **High Risk → Immediate intervention**
+  - Dedicated account managers  
+  - Personalized offers  
+  - Retention incentives  
+
+- **Medium Risk → Prevent escalation**
+  - Targeted campaigns  
+  - Engagement strategies  
+
+- **Low Risk → Maintain & monitor**
+  - Low-cost digital engagement  
+  - Upsell opportunities  
+
+### 🟨 Key Insight
+
+A small portion of customers (**~7%**) represents **disproportionate financial risk**, meaning:
+
+→ Retention efforts can be **highly focused and cost-efficient**  
+→ Even small improvements in this segment can yield **significant revenue impact**
+
+<details> 
+<summary>🟩 View Code</summary>
+
 ```python
 results = X_test.copy()
 
@@ -364,17 +436,19 @@ Summarizes customer profiles by risk segment.
 
 </details>
 
-
 ## 🟥 Model Performance & Limitations
 
-Limitations include:
+### Key Limitations
 
-- Imbalanced dataset (~20% churn)  
-- Limited behavioral features  
-- No hyperparameter tuning  
+- **Class Imbalance (~20% churn rate)**  
+  → The model is trained on more non-churners than churners, which can bias predictions  
 
-**Business Insight:**  
-Even a baseline model provides actionable predictive power.
+- **Limited Feature Set**  
+  → No behavioral data (transactions, app usage, customer support interactions)  
+  → These are often strong predictors of churn  
+
+- **No Hyperparameter Optimization**  
+  → Model performance could be improved with tuning  
 
 
 
