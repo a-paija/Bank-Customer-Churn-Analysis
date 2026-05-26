@@ -185,16 +185,6 @@ A **Random Forest classification model** was developed to predict whether a cust
 **Purpose of the Model:**  
 The goal of this model is not just accuracy, but **actionability**, identifying *which customers are at risk before they leave*, so the bank can intervene proactively rather than reactively.
 
-### Model Performance
-
-- **Accuracy: 86.7%**  
-  → The model correctly predicts churn vs. non-churn in ~87% of cases overall.  
-  → However, accuracy alone can be misleading due to class imbalance (most customers do not churn).
-
-- **Precision: 75.7%**  
-  → Of all customers predicted to churn, ~76% actually churned.  
-  → This reflects how **reliable the model’s positive predictions are** (important for avoiding wasted retention efforts).
-
 ### Key Predictors of Churn
 
 <img src="Images/Top Drivers of Customer Churn.png" alt="Drivers" width="550" height="650"/>
@@ -225,7 +215,15 @@ The model identifies the following as the most influential drivers:
   → Tailor offers based on risk profile and key drivers  
 
 - **Early Warning System**  
-  → Integrate into CRM systems for real-time churn monitoring  
+  → Integrate into CRM systems for real-time churn monitoring
+
+**Accuracy: 86.7%**  
+  → The model correctly predicts churn vs. non-churn in ~87% of cases overall.  
+  → However, accuracy alone can be misleading due to class imbalance (most customers do not churn).
+
+**Precision: 75.7%**  
+  → Of all customers predicted to churn, ~76% actually churned.  
+  → This reflects how **reliable the model’s positive predictions are** (important for avoiding wasted retention efforts).
 
 </details> 
 <details> 
