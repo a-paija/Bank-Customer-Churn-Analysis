@@ -19,6 +19,8 @@ This project transforms raw customer data into actionable insights using **Pytho
 - Exploratory analysis highlights where churn risk is concentrated  
 - Predictive modeling explains why customers churn and who is at risk  
 
+> **Note:** Detailed recommendations and execution strategies are consolidated in the final section of this report.
+> 
 ---
 
 Targeted Python scripts and full analysis can be found [here](https://github.com/a-paija/Bank-Customer-Churn-Analysis/blob/main/Churn_Script.py)
