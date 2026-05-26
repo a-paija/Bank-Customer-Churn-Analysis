@@ -21,54 +21,30 @@ This project bridges that gap by transforming raw customer data into actionable 
 
 Together, they enable both proactive intervention and strategic decision-making.
 
----
-
 Targeted Python scripts and full analysis can be found [here](https://github.com/a-paija/Bank-Customer-Churn-Analysis/blob/main/Churn_Script.py)
 
 An interactive Tableau Dashboard can be found [here](https://public.tableau.com/app/profile/ajin.paija/viz/CustomerChurnDashboard_17650248694380/Story1)
 
----
 
-## 🟦 Business Objective and Data Structure
+## 🟦 Business Objective & Data Overview
 
-The primary objective of this analysis is to **predict customer churn and identify actionable retention opportunities** to stabilize revenue and improve customer lifetime value.
+The objective of this analysis is to create a model that can **predict customer churn and enable targeted retention strategies** to reduce revenue loss and improve customer lifetime value.
 
-Specifically, this project aims to:
+The analysis uses **10,000 customer records across 13 features**, including:
 
-- Identify key drivers of customer churn  
-- Segment customers based on churn risk  
-- Evaluate churn patterns across demographics and regions  
-- Build a predictive model to classify at-risk customers  
-- Translate insights into targeted retention strategies  
+- Demographics (Age, Gender, Geography)  
+- Financial attributes (Credit Score, Balance, Estimated Salary)  
+- Account behavior (Tenure, Product count, Activity status)  
+- Outcome variable: **Churn (Exited)**  
 
+Raw data was consolidated and prepared to ensure reliability for analysis and modeling:
 
+- Resolved inconsistencies in numeric and categorical fields  
+- Removed duplicates and handled missing values  
+- Merged customer and account-level data  
+- Engineered key features (e.g., age groups, credit segments)  
 
-## 🟦 Data Structure & Initial Checks
-
-The dataset consists of **10,000 customer records with 13 features** spanning:
-
-- **Demographics:** Age, Gender, Geography  
-- **Financial Profile:** Credit Score, Balance, Estimated Salary  
-- **Account Behavior:** Tenure, Number of Products, Activity Status  
-- **Outcome Variable:** Churn (Exited)  
-
-Data originated from multiple tables and required consolidation before analysis.
-
-
-
-## 🟦 Data Cleaning (Python)
-
-Before analysis, extensive data preparation was conducted to ensure accuracy and usability.
-
-**Key steps included:**
-
-- Standardizing numeric formats (currency → float)  
-- Cleaning inconsistent categorical values (e.g., geography labels)  
-- Handling missing values and removing duplicates  
-- Merging customer and account datasets  
-- Engineering new features (age groups, credit score segments)  
-
-These steps ensured the dataset was suitable for both exploratory analysis and predictive modeling.
+Result: a **clean, structured dataset ready for analysis and predictive modeling**.
 
 
 
