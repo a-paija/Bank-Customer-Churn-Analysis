@@ -197,6 +197,9 @@ The goal of this model is not just accuracy, but **actionability**, identifying 
 
 ### Key Predictors of Churn
 
+<img src="Images/Top Drivers of Customer Churn.png" alt="Drivers" width="550" height="650"/>
+
+
 The model identifies the following as the most influential drivers:
 
 - **Age** → Older customers show significantly higher churn rates  
