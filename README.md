@@ -2,9 +2,9 @@
 
 Customer churn is a major revenue loss for financial institutions, as retaining existing customers is significantly more cost-effective than acquiring new ones. Mavenland Bank has experienced elevated churn rates but lacks a structured, data-driven understanding of who is leaving, why they leave, and how to intervene effectively.
 
-Due to lack of integrated analysis, Mavenland Bank is unable to clearly identify churn drivers or implement targeted retention strategies. This project addresses that problem by using customer data (10,000 records across demographics, financials, and behavior) to **predict and prevent churn before it happens**.
+Mavenland Bank is unable to clearly identify churn drivers. This project addresses that problem by using customer data to **predict and prevent churn before it happens** by implementing targeted retention strategies.
 
-This project addresses business questions such as:
+This project answers business questions such as:
 
 - Which customer segments are most likely to churn  
 - What behavioral or financial patterns signal churn risk  
@@ -15,9 +15,6 @@ This project addresses business questions such as:
 Reduce customer churn by **25% within two quarters** by identifying high-risk customers and enabling targeted, data-driven retention strategies.
 
 This project transforms raw customer data into actionable insights using **Python (Pandas, Scikit-learn)**, Tableau data visualizations, and predictive modeling.
-
-- Exploratory analysis highlights where churn risk is concentrated  
-- Predictive modeling explains why customers churn and who is at risk  
 
 > **Note:** Detailed recommendations and execution strategies are consolidated in the final section of this report.
 > 
